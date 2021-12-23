@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="hero.js"></script>
+</head>
+<body>
+<canvas height="768" id="myCanvas" style="border: solid 1px" width="1368"></canvas>
+<script>
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext('2d');
+    let hero = new Hero(40, 20, 230, 200,30,'hero.jpg');
+    hero.moveHero(ctx);
+    function moveHero(event) {
+        switch (event.keyCode) {
+            case 37: {
+                hero.moveLeft();
+                break;
+            }
+            case 39: {
+                hero.moveRight();
+                break
+            }
+            case 38: {
+                hero.moveUp();
+                break;
+            }
+            case 40: {
+                hero.moveDown();
+                break;
+            }
+            case 32: {
+                hero.upSpeed();
+                break;
+            }
+        }
+updateCanvas();
+    }
+    function clearCanvas() {
+        ctx.clearRect(0, 0, 1368, 768);
+    }
+    clearCanvas();
+
+    function updateCanvas() {
+        clearCanvas();
+        hero.moveHero(ctx);
+    }
+    document.addEventListener('keydown',moveHero)
+</script>
+</body>
+</html>
